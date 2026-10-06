@@ -98,20 +98,51 @@
 /* ---------- Desktop TOC ---------- */
 .toc { padding: 0.25rem 0; }
 .toc-list {
+  position: relative;
   list-style: none;
   margin: 0;
   padding: 0;
+  border-left: 2px solid var(--border);
   font-size: 0.86rem;
-  line-height: 1.4;
-  ol { list-style: none; margin: 0; padding: 0 0 0 0.85rem; }
+  line-height: 1.45;
+
+  li {
+    position: relative;
+  }
+
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    a {
+      padding-left: 1.6rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+  }
+
   a {
+    position: relative;
     display: block;
-    padding: 0.32rem 0 0.32rem 0.85rem;
-    border-left: 2px solid var(--border);
+    padding: 0.35rem 0.75rem 0.35rem 0.95rem;
+    margin-left: -2px;
+    border-left: 2px solid transparent;
     color: var(--muted);
-    transition: color var(--t-fast), border-color var(--t-fast);
-    &:hover { color: var(--text-strong); }
-    &.is-active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    transition: color var(--t-fast), border-color var(--t-fast), background-color var(--t-fast);
+
+    &:hover {
+      color: var(--text-strong);
+      background: var(--surface-2);
+    }
+
+    &.is-active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      font-weight: 600;
+      background: var(--accent-soft);
+    }
   }
 }
 

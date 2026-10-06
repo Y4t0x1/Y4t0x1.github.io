@@ -26,9 +26,9 @@
   --accent-soft: rgba(45, 212, 191, 0.12);
   --accent-ring: rgba(45, 212, 191, 0.35);
   --gradient: linear-gradient(120deg, #2dd4bf 0%, #38bdf8 100%);
-  --avatar-border: linear-gradient(135deg, #ffffff 0%, #94a3b8 35%, #334155 70%, #0f172a 100%);
-  --avatar-shadow: 0 0 20px -3px rgba(255, 255, 255, 0.2), 0 10px 28px -10px rgba(0, 0, 0, 0.85);
-  --avatar-hover-glow: 0 0 28px 0 rgba(255, 255, 255, 0.35), 0 12px 32px -10px rgba(0, 0, 0, 0.95);
+  --avatar-border: var(--gradient);
+  --avatar-shadow: 0 10px 30px -12px var(--accent-ring);
+  --avatar-hover-glow: 0 12px 36px -10px var(--accent-ring);
 
   --link: #5eead4;
   --link-hover: #99f6e4;
@@ -81,9 +81,9 @@
   --accent-soft: rgba(15, 118, 110, 0.09);
   --accent-ring: rgba(15, 118, 110, 0.35);
   --gradient: linear-gradient(120deg, #0d9488 0%, #0284c7 100%);
-  --avatar-border: linear-gradient(135deg, #0f172a 0%, #334155 50%, #94a3b8 100%);
-  --avatar-shadow: 0 4px 18px -4px rgba(15, 23, 42, 0.25);
-  --avatar-hover-glow: 0 6px 24px -4px rgba(15, 23, 42, 0.35);
+  --avatar-border: var(--gradient);
+  --avatar-shadow: 0 10px 24px -10px var(--accent-ring);
+  --avatar-hover-glow: 0 12px 30px -8px var(--accent-ring);
 
   --link: #0f766e;
   --link-hover: #115e59;
