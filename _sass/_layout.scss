@@ -38,11 +38,21 @@
   margin-bottom: 0.9rem;
   padding: 3px;
   border-radius: 50%;
-  background: var(--gradient);
-  box-shadow: 0 10px 30px -12px var(--accent-ring);
-  transition: transform var(--t);
-  img { display: block; width: 100%; height: 100%; border-radius: 50%; background: var(--bg-elev); object-fit: cover; }
-  &:hover { transform: rotate(-4deg) scale(1.03); }
+  background: var(--avatar-border);
+  box-shadow: var(--avatar-shadow);
+  transition: transform var(--t), box-shadow var(--t);
+  img {
+    display: block;
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    background: var(--bg-elev);
+    object-fit: cover;
+    object-position: center 20%;
+  }
+  &:hover {
+    transform: rotate(-3deg) scale(1.04);
+    box-shadow: var(--avatar-hover-glow);
+  }
 }
 .site-title {
   font-size: 1.35rem;

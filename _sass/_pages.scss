@@ -143,8 +143,10 @@
   padding: 3px;
   border: 0;
   border-radius: 50%;
-  background: var(--gradient);
+  background: var(--avatar-border);
+  box-shadow: var(--avatar-shadow);
   object-fit: cover;
+  object-position: center 20%;
   cursor: default;
 }
 .about-handle { font-family: var(--font-mono); font-weight: 700; color: var(--text-strong) !important; font-size: 1.1rem; }
