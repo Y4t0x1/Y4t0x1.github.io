@@ -22,7 +22,7 @@ timezone: Europe/Istanbul
 author:
   name: "Y4t0x1"
   bio: "Security enthusiast · CTF player · breaking things to learn how they work."
-  avatar: /assets/img/avatar.svg
+  avatar: /assets/img/avatar.jpg
 
 # Default social preview image (used when a writeup has no `image`)
 og_image: /assets/img/og-default.svg
