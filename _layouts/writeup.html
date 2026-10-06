@@ -1,0 +1,89 @@
+---
+layout: default
+---
+{%- assign words = content | strip_html | number_of_words -%}
+{%- assign minutes = words | divided_by: 200 | at_least: 1 -%}
+<div class="with-panel with-toc">
+  <main id="main-content" class="writeup-main" tabindex="-1">
+    <article class="writeup" itemscope itemtype="https://schema.org/BlogPosting">
+      <header class="writeup-header">
+        <a class="back-link" href="{{ '/#writeups' | relative_url }}">{% include icon.html name="arrow-left" %} All writeups</a>
+
+        <p class="writeup-kicker">
+          <a href="{{ '/categories/' | relative_url }}#{{ page.category | slugify }}">{% include icon.html name="folder" %}{{ page.category }}</a>
+          {%- if page.platform %}<span aria-hidden="true">/</span><span>{{ page.platform }}</span>{% endif %}
+        </p>
+
+        <h1 class="writeup-title" itemprop="headline">{{ page.title }}</h1>
+        {%- if page.summary %}
+        <p class="writeup-summary" itemprop="description">{{ page.summary }}</p>
+        {%- endif %}
+
+        <div class="writeup-meta">
+          <span>{% include icon.html name="calendar" %}<time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%B %-d, %Y" }}</time></span>
+          <span title="{{ words }} words">{% include icon.html name="clock" %}{{ minutes }} min read</span>
+          <span>{% include icon.html name="user" %}<span itemprop="author">{{ site.author.name }}</span></span>
+        </div>
+
+        <dl class="info-box">
+          <div><dt>Platform</dt><dd>{{ page.platform | default: "—" }}</dd></div>
+          <div><dt>Category</dt><dd>{{ page.category | default: "—" }}</dd></div>
+          <div><dt>Difficulty</dt><dd>{% include difficulty.html level=page.difficulty %}</dd></div>
+          <div><dt>Published</dt><dd>{{ page.date | date: "%Y-%m-%d" }}</dd></div>
+        </dl>
+      </header>
+
+      {%- if page.toc != false %}
+      <details class="toc-mobile" id="toc-mobile-wrap" hidden>
+        <summary>{% include icon.html name="list" %} Contents</summary>
+        <nav aria-label="Table of contents (mobile)"><ol class="toc-list" id="toc-mobile"></ol></nav>
+      </details>
+      {%- endif %}
+
+      <div class="prose" id="writeup-content" itemprop="articleBody">
+        {{ content | replace: '<img ', '<img loading="lazy" decoding="async" ' }}
+      </div>
+
+      <footer class="writeup-footer">
+        {%- if page.tags.size > 0 %}
+        <div class="writeup-tags">
+          {% include icon.html name="tag" %}
+          <ul role="list">
+            {%- for t in page.tags %}
+            <li><a class="chip chip-sm" href="{{ '/' | relative_url }}?tag={{ t | slugify }}#writeups">#{{ t }}</a></li>
+            {%- endfor %}
+          </ul>
+        </div>
+        {%- endif %}
+
+        <nav class="post-nav" aria-label="More writeups">
+          {%- if page.previous %}
+          <a class="post-nav-link prev" href="{{ page.previous.url | relative_url }}">
+            <small>{% include icon.html name="arrow-left" %} Older</small>
+            <span>{{ page.previous.title }}</span>
+          </a>
+          {%- else %}<span></span>{%- endif %}
+          {%- if page.next %}
+          <a class="post-nav-link next" href="{{ page.next.url | relative_url }}">
+            <small>Newer {% include icon.html name="arrow-right" %}</small>
+            <span>{{ page.next.title }}</span>
+          </a>
+          {%- endif %}
+        </nav>
+
+        <a class="btn btn-ghost back-bottom" href="{{ '/#writeups' | relative_url }}">{% include icon.html name="arrow-left" %} Back to all writeups</a>
+      </footer>
+    </article>
+  </main>
+
+  <aside class="panel panel-toc" aria-label="Table of contents">
+    <div class="panel-sticky">
+      {%- if page.toc != false %}
+      <nav class="toc" id="toc-wrap" hidden aria-labelledby="toc-title">
+        <h2 class="widget-title" id="toc-title">{% include icon.html name="list" %} Contents</h2>
+        <ol class="toc-list" id="toc"></ol>
+      </nav>
+      {%- endif %}
+    </div>
+  </aside>
+</div>

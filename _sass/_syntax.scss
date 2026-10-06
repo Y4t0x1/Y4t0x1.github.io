@@ -1,0 +1,90 @@
+/* =============================================================
+   Rouge syntax highlighting — custom teal/blue palette.
+   Colors switch with the theme via CSS variables.
+   ============================================================= */
+
+:root,
+[data-theme="dark"] {
+  --hl-comment: #6b7d93;
+  --hl-keyword: #c792ea;
+  --hl-string: #a5e3a0;
+  --hl-number: #f7a76c;
+  --hl-function: #5ccfe6;
+  --hl-class: #ffd479;
+  --hl-variable: #f0f4f8;
+  --hl-builtin: #2dd4bf;
+  --hl-operator: #89ddff;
+  --hl-tag: #ff7a93;
+  --hl-attr: #ffcb6b;
+  --hl-inserted: #4ade80;
+  --hl-inserted-bg: rgba(74, 222, 128, 0.1);
+  --hl-deleted: #fb7185;
+  --hl-deleted-bg: rgba(251, 113, 133, 0.1);
+  --hl-prompt: #2dd4bf;
+  --hl-output: #a3b3c6;
+}
+
+[data-theme="light"] {
+  --hl-comment: #6a7a8c;
+  --hl-keyword: #8b3fc7;
+  --hl-string: #187a3a;
+  --hl-number: #b4530a;
+  --hl-function: #0369a1;
+  --hl-class: #9a6700;
+  --hl-variable: #1f2937;
+  --hl-builtin: #0f766e;
+  --hl-operator: #0e7490;
+  --hl-tag: #be123c;
+  --hl-attr: #a16207;
+  --hl-inserted: #15803d;
+  --hl-inserted-bg: rgba(21, 128, 61, 0.08);
+  --hl-deleted: #be123c;
+  --hl-deleted-bg: rgba(190, 18, 60, 0.07);
+  --hl-prompt: #0f766e;
+  --hl-output: #475569;
+}
+
+.highlight {
+  color: var(--text);
+
+  .c, .ch, .cm, .c1, .cs, .cd { color: var(--hl-comment); font-style: italic; }
+  .cp, .cpf { color: var(--hl-keyword); }
+
+  .k, .kd, .kn, .kp, .kr, .kv { color: var(--hl-keyword); }
+  .kc { color: var(--hl-number); }
+  .kt { color: var(--hl-class); }
+
+  .o, .ow { color: var(--hl-operator); }
+  .p, .pi { color: var(--text); }
+
+  .n, .py { color: var(--text); }
+  .na { color: var(--hl-attr); }
+  .nb, .bp { color: var(--hl-builtin); }
+  .nc, .nn, .ne { color: var(--hl-class); }
+  .no { color: var(--hl-number); }
+  .nd { color: var(--hl-keyword); }
+  .ni, .nl { color: var(--hl-attr); }
+  .nf, .fm { color: var(--hl-function); }
+  .nt { color: var(--hl-tag); }
+  .nv, .vc, .vg, .vi, .vm { color: var(--hl-variable); }
+  .nx { color: var(--hl-function); }
+
+  .m, .mb, .mf, .mh, .mi, .il, .mo, .mx { color: var(--hl-number); }
+
+  .s, .sa, .sb, .sc, .dl, .sd, .s2, .sh, .s1, .ss { color: var(--hl-string); }
+  .se { color: var(--hl-operator); }
+  .si { color: var(--hl-function); }
+  .sx, .sr { color: var(--hl-builtin); }
+
+  .gd { color: var(--hl-deleted); background: var(--hl-deleted-bg); }
+  .gi { color: var(--hl-inserted); background: var(--hl-inserted-bg); }
+  .ge { font-style: italic; }
+  .gs { font-weight: 700; }
+  .gh, .gu { color: var(--hl-function); font-weight: 700; }
+  .gp { color: var(--hl-prompt); font-weight: 600; user-select: none; }
+  .go { color: var(--hl-output); }
+  .gr, .gt { color: var(--hl-deleted); }
+
+  .err { color: var(--hl-deleted); background: none; }
+  .w { color: var(--hl-comment); }
+}

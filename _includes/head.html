@@ -1,0 +1,32 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a0f16">
+
+{%- comment -%} Apply saved theme before first paint (dark by default) to avoid a flash. {%- endcomment %}
+<script>
+  (function () {
+    var t = "dark";
+    try { var s = localStorage.getItem("theme"); if (s === "light" || s === "dark") t = s; } catch (e) {}
+    document.documentElement.setAttribute("data-theme", t);
+  })();
+</script>
+
+{% include seo.html %}
+
+<link rel="icon" href="{{ '/assets/img/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="{{ site.title | escape }}" href="{{ '/feed.xml' | relative_url }}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+
+<script defer src="{{ '/assets/js/main.js' | relative_url }}"></script>
+{%- if page.layout == "home" %}
+<script defer src="{{ '/assets/js/home.js' | relative_url }}"></script>
+{%- endif %}
+{%- if page.layout == "writeup" %}
+<script defer src="{{ '/assets/js/writeup.js' | relative_url }}"></script>
+{%- endif %}

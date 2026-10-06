@@ -1,0 +1,31 @@
+---
+layout: null
+permalink: /feed.xml
+sitemap: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+{%- assign writeups = site.writeups | sort: "date" | reverse %}
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ site.lang | default: 'en' }}">
+  <title>{{ site.title | xml_escape }}</title>
+  <subtitle>{{ site.description | strip | xml_escape }}</subtitle>
+  <link href="{{ '/feed.xml' | absolute_url }}" rel="self" type="application/atom+xml"/>
+  <link href="{{ '/' | absolute_url }}" rel="alternate" type="text/html"/>
+  <id>{{ '/' | absolute_url }}</id>
+  <updated>{% if writeups.size > 0 %}{{ writeups.first.date | date_to_xmlschema }}{% else %}{{ site.time | date_to_xmlschema }}{% endif %}</updated>
+  <author><name>{{ site.author.name | xml_escape }}</name></author>
+  {%- for w in writeups limit: 20 %}
+  <entry>
+    <title>{{ w.title | xml_escape }}</title>
+    <link href="{{ w.url | absolute_url }}" rel="alternate" type="text/html"/>
+    <id>{{ w.url | absolute_url }}</id>
+    <published>{{ w.date | date_to_xmlschema }}</published>
+    <updated>{{ w.last_modified_at | default: w.date | date_to_xmlschema }}</updated>
+    <category term="{{ w.category | xml_escape }}"/>
+    {%- for t in w.tags %}
+    <category term="{{ t | xml_escape }}"/>
+    {%- endfor %}
+    <summary>{{ w.summary | xml_escape }}</summary>
+    <content type="html">{{ w.content | xml_escape }}</content>
+  </entry>
+  {%- endfor %}
+</feed>

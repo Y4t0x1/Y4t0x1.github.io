@@ -1,0 +1,8 @@
+{%- comment -%} Difficulty pill. Usage: {% include difficulty.html level=page.difficulty %} {%- endcomment -%}
+{%- if include.level -%}
+{%- assign lvl = include.level | downcase | strip -%}
+<span class="difficulty difficulty-{{ lvl | slugify }}" title="Difficulty: {{ include.level }}">
+  <span class="difficulty-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  {{ include.level | capitalize }}
+</span>
+{%- endif -%}

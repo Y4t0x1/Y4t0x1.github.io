@@ -1,0 +1,35 @@
+---
+title: Tags
+permalink: /tags/
+description: Every tag used across the writeups.
+---
+{%- assign writeups = site.writeups | sort: "date" | reverse -%}
+{%- assign all_tags = writeups | map: "tags" | join: "," | split: "," | uniq | sort -%}
+<ul class="tag-cloud tag-cloud-lg" role="list">
+  {%- for t in all_tags %}
+  {%- assign c = writeups | where_exp: "w", "w.tags contains t" | size %}
+  <li><a class="chip" href="#{{ t | slugify }}">#{{ t }} <span class="chip-count">{{ c }}</span></a></li>
+  {%- endfor %}
+</ul>
+
+<div class="group-list">
+  {%- for t in all_tags %}
+  {%- assign tagged = writeups | where_exp: "w", "w.tags contains t" %}
+  <section class="group" id="{{ t | slugify }}">
+    <h2 class="group-title">
+      {% include icon.html name="tag" %}
+      <span>{{ t }}</span>
+      <span class="group-count">{{ tagged.size }}</span>
+      <a class="group-filter" href="{{ '/' | relative_url }}?tag={{ t | slugify }}#writeups">Filter on home →</a>
+    </h2>
+    <ul class="entry-list" role="list">
+      {%- for w in tagged %}
+      <li>
+        <a href="{{ w.url | relative_url }}">{{ w.title }}</a>
+        <span class="entry-meta"><time datetime="{{ w.date | date_to_xmlschema }}">{{ w.date | date: "%b %-d, %Y" }}</time></span>
+      </li>
+      {%- endfor %}
+    </ul>
+  </section>
+  {%- endfor %}
+</div>

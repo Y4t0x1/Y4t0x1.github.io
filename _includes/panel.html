@@ -1,0 +1,33 @@
+{%- comment -%} Right-hand panel: recent writeups + trending tags. {%- endcomment -%}
+{%- assign recent = site.writeups | sort: "date" | reverse -%}
+{%- assign all_tags = site.writeups | map: "tags" | join: "," | split: "," | uniq -%}
+{%- capture weighted -%}
+{%- for tag in all_tags -%}
+{%- assign c = site.writeups | where_exp: "w", "w.tags contains tag" | size -%}
+{{ c | prepend: "0000" | slice: -4, 4 }}|{{ tag }}{% unless forloop.last %},{% endunless %}
+{%- endfor -%}
+{%- endcapture -%}
+{%- assign trending = weighted | split: "," | sort | reverse -%}
+<aside class="panel" aria-label="Sidebar widgets">
+  <div class="panel-sticky">
+    <section class="widget">
+      <h2 class="widget-title">Recent writeups</h2>
+      <ul class="widget-list" role="list">
+        {%- for w in recent limit: 5 %}
+        <li><a href="{{ w.url | relative_url }}">{{ w.title }}</a></li>
+        {%- endfor %}
+      </ul>
+    </section>
+    {%- if trending.size > 0 %}
+    <section class="widget">
+      <h2 class="widget-title">Trending tags</h2>
+      <ul class="tag-cloud" role="list">
+        {%- for entry in trending limit: 12 %}
+        {%- assign parts = entry | split: "|" %}
+        <li><a class="chip chip-sm" href="{{ '/' | relative_url }}?tag={{ parts[1] | slugify }}#writeups">{{ parts[1] }}</a></li>
+        {%- endfor %}
+      </ul>
+    </section>
+    {%- endif %}
+  </div>
+</aside>

@@ -1,0 +1,119 @@
+---
+layout: default
+---
+{%- assign writeups = site.writeups | sort: "date" | reverse -%}
+{%- assign categories = writeups | map: "category" | uniq | sort -%}
+{%- assign all_tags = writeups | map: "tags" | join: "," | split: "," | uniq | sort -%}
+{%- assign difficulties = writeups | map: "difficulty" | uniq -%}
+{%- capture diff_keys -%}{% for d in difficulties %}|{{ d | slugify }}|{% endfor %}{%- endcapture -%}
+{%- assign visible_tags = site.home_visible_tags | default: 14 -%}
+
+<main id="main-content" class="home" tabindex="-1">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-text">
+      <p class="hero-eyebrow"><span class="pulse" aria-hidden="true"></span>{{ site.author.name | downcase }}@ctf:~$ whoami</p>
+      <h1 id="hero-title" class="hero-title">
+        Breaking boxes,<br>
+        <span class="gradient-text">writing it all down.</span>
+      </h1>
+      <p class="hero-lead">{{ content | strip_html | strip }}</p>
+      <ul class="hero-stats" role="list">
+        <li><strong>{{ writeups.size }}</strong><span>writeups</span></li>
+        <li><strong>{{ categories.size }}</strong><span>categories</span></li>
+        <li><strong>{{ all_tags.size }}</strong><span>tags</span></li>
+      </ul>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#writeups">Browse writeups {% include icon.html name="arrow-right" %}</a>
+        <a class="btn btn-ghost" href="{{ '/about/' | relative_url }}">About me</a>
+      </div>
+    </div>
+
+    <div class="terminal" aria-hidden="true">
+      <div class="terminal-bar">
+        <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+        <span class="terminal-title">~/writeups</span>
+      </div>
+      <div class="terminal-body">
+        <p><span class="prompt">$</span> ls -t writeups/ | head -n 3</p>
+        {%- for w in writeups limit: 3 %}
+        <p class="out"><span class="t-date">{{ w.date | date: "%Y-%m-%d" }}</span> <span class="t-file">{{ w.slug }}.md</span></p>
+        {%- endfor %}
+        <p><span class="prompt">$</span> cat categories.txt</p>
+        <p class="out t-cats">{{ categories | join: " · " }}</p>
+        <p><span class="prompt">$</span> <span class="cursor"></span></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="writeups" class="writeups-section" aria-labelledby="writeups-title">
+    <div class="section-head">
+      <h2 id="writeups-title">All writeups</h2>
+      <p id="results-count" class="results-count" role="status" aria-live="polite">{{ writeups.size }} writeups</p>
+    </div>
+
+    <div class="toolbar" id="filters">
+      <div class="toolbar-row">
+        <div class="field field-search">
+          <label for="filter-q" class="visually-hidden">Filter writeups by keyword</label>
+          {% include icon.html name="filter" %}
+          <input id="filter-q" type="search" placeholder="Filter by title, tag, platform…" autocomplete="off">
+        </div>
+        <div class="field field-select">
+          <label for="filter-difficulty" class="visually-hidden">Difficulty</label>
+          <select id="filter-difficulty">
+            <option value="">All difficulties</option>
+            {%- for level in site.data.difficulties %}
+            {%- capture level_key %}|{{ level | slugify }}|{% endcapture %}
+            {%- if diff_keys contains level_key %}
+            <option value="{{ level | slugify }}">{{ level | capitalize }}</option>
+            {%- endif %}
+            {%- endfor %}
+          </select>
+          {% include icon.html name="chevron-down" class="select-caret" %}
+        </div>
+        <div class="field field-select">
+          <label for="filter-sort" class="visually-hidden">Sort order</label>
+          <select id="filter-sort">
+            <option value="new">Newest first</option>
+            <option value="old">Oldest first</option>
+          </select>
+          {% include icon.html name="chevron-down" class="select-caret" %}
+        </div>
+      </div>
+
+      <div class="chip-row" role="group" aria-label="Filter by category">
+        <button type="button" class="chip is-active" data-category="" aria-pressed="true">All</button>
+        {%- for c in categories %}
+        {%- assign count = writeups | where: "category", c | size %}
+        <button type="button" class="chip" data-category="{{ c | slugify }}" aria-pressed="false">{{ c }} <span class="chip-count">{{ count }}</span></button>
+        {%- endfor %}
+      </div>
+
+      {%- if all_tags.size > 0 %}
+      <div class="chip-row chip-row-tags" id="tag-row" role="group" aria-label="Filter by tag">
+        {%- for t in all_tags %}
+        <button type="button" class="chip chip-sm chip-tag{% if forloop.index > visible_tags %} is-extra{% endif %}" data-tag="{{ t | slugify }}" aria-pressed="false">#{{ t }}</button>
+        {%- endfor %}
+        {%- if all_tags.size > visible_tags %}
+        <button type="button" class="chip chip-sm chip-more" id="tags-more" aria-expanded="false">+{{ all_tags.size | minus: visible_tags }} more</button>
+        {%- endif %}
+      </div>
+      {%- endif %}
+
+      <button type="button" class="clear-filters" id="clear-filters" hidden>{% include icon.html name="x" %} Clear filters</button>
+    </div>
+
+    <div class="card-grid" id="card-grid">
+      {%- for w in writeups %}
+      {% include writeup-card.html writeup=w %}
+      {%- endfor %}
+    </div>
+
+    <div class="empty-state" id="empty-state" hidden>
+      {% include icon.html name="terminal" %}
+      <p><strong>No writeups match.</strong> <code>grep</code> came back empty — try different filters.</p>
+    </div>
+  </section>
+</main>

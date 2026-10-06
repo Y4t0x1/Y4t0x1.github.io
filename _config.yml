@@ -1,0 +1,90 @@
+# =============================================================
+#  Site configuration — edit the values in this block first.
+#  Restart `jekyll serve` after changing this file.
+# =============================================================
+
+title: "Y4t0x1"
+tagline: "CTF writeups & security notes"
+description: >-
+  Hands-on CTF writeups, lab walkthroughs and security research notes by
+  Y4t0x1 — web exploitation, forensics, crypto, reversing and privilege escalation.
+
+# Full site URL (no trailing slash). For a user site this is https://<username>.github.io
+url: "https://y4t0x1.github.io"
+# Leave empty for a user site (repo named <username>.github.io).
+# For a project site (repo named e.g. "writeups") use "/writeups".
+# NOTE: the GitHub Actions workflow overrides this automatically at build time.
+baseurl: ""
+
+lang: en
+timezone: Europe/Istanbul
+
+author:
+  name: "Y4t0x1"
+  bio: "Security enthusiast · CTF player · breaking things to learn how they work."
+  avatar: /assets/img/avatar.svg
+
+# Default social preview image (used when a writeup has no `image`)
+og_image: /assets/img/og-default.svg
+
+# Social / contact links. Remove or leave empty any you don't use.
+social:
+  github: "https://github.com/Y4t0x1"
+  linkedin: "https://www.linkedin.com/in/hossam-mohamed-sec/"
+  email: "Hossam.sec@outlook.com"
+  discord: "https://discord.com/users/000000000000000000"
+  discord_handle: "t3nj0x1"
+
+# Number of tags shown before the "show more" toggle on the home page
+home_visible_tags: 14
+
+# =============================================================
+#  Build settings — you usually don't need to touch these.
+# =============================================================
+
+collections:
+  writeups:
+    output: true
+    permalink: /writeups/:slug/
+
+defaults:
+  - scope:
+      path: ""
+      type: writeups
+    values:
+      layout: writeup
+      toc: true
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  auto_ids: true
+  hard_wrap: false
+  footnote_backlink: "&#8617;&#xFE0E;"
+  syntax_highlighter_opts:
+    css_class: highlight
+    block:
+      line_numbers: false
+
+sass:
+  style: compressed
+
+plugins:
+  - jekyll-sitemap
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - .bundle/
+  - .jekyll-cache/
+  - node_modules/
+  - "*.code-workspace"

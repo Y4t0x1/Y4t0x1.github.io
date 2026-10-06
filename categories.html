@@ -1,0 +1,26 @@
+---
+title: Categories
+permalink: /categories/
+description: Writeups grouped by challenge category.
+---
+{%- assign groups = site.writeups | sort: "date" | reverse | group_by: "category" | sort: "name" -%}
+<div class="group-list">
+  {%- for g in groups %}
+  <section class="group" id="{{ g.name | slugify }}">
+    <h2 class="group-title">
+      {% include icon.html name="folder" %}
+      <span>{{ g.name }}</span>
+      <span class="group-count">{{ g.size }}</span>
+      <a class="group-filter" href="{{ '/' | relative_url }}?category={{ g.name | slugify }}#writeups">Filter on home →</a>
+    </h2>
+    <ul class="entry-list" role="list">
+      {%- for w in g.items %}
+      <li>
+        <a href="{{ w.url | relative_url }}">{{ w.title }}</a>
+        <span class="entry-meta">{% include difficulty.html level=w.difficulty %}<time datetime="{{ w.date | date_to_xmlschema }}">{{ w.date | date: "%b %-d, %Y" }}</time></span>
+      </li>
+      {%- endfor %}
+    </ul>
+  </section>
+  {%- endfor %}
+</div>

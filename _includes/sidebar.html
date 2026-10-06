@@ -1,0 +1,37 @@
+<aside id="sidebar" class="sidebar" aria-label="Sidebar">
+  <div class="sidebar-inner">
+    <header class="profile">
+      <a href="{{ '/' | relative_url }}" class="avatar" aria-label="{{ site.title | escape }} — home">
+        <img src="{{ site.author.avatar | relative_url }}" width="96" height="96" alt="">
+      </a>
+      <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title }}</a>
+      <p class="site-subtitle">{{ site.tagline }}</p>
+    </header>
+
+    <nav class="side-nav" aria-label="Main">
+      <ul role="list">
+        {%- for item in site.data.navigation %}
+        {%- assign active = false -%}
+        {%- if page.url == item.url -%}{%- assign active = true -%}{%- endif -%}
+        {%- if item.url == "/" and page.collection == "writeups" -%}{%- assign active = true -%}{%- endif %}
+        <li>
+          <a href="{{ item.url | relative_url }}" class="nav-link{% if active %} is-active{% endif %}"{% if active %} aria-current="page"{% endif %}>
+            {% include icon.html name=item.icon %}
+            <span>{{ item.title }}</span>
+          </a>
+        </li>
+        {%- endfor %}
+      </ul>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <button type="button" id="theme-toggle" class="icon-btn theme-toggle" aria-label="Switch to light mode" title="Toggle theme">
+        <span class="theme-icon theme-icon-sun">{% include icon.html name="sun" %}</span>
+        <span class="theme-icon theme-icon-moon">{% include icon.html name="moon" %}</span>
+      </button>
+      <span class="divider" aria-hidden="true"></span>
+      {% include social-links.html style="icons" %}
+    </div>
+  </div>
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay" hidden></div>

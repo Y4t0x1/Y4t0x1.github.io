@@ -1,0 +1,40 @@
+<header class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <button type="button" id="sidebar-toggle" class="icon-btn topbar-menu" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false">
+      {% include icon.html name="menu" %}
+    </button>
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol role="list">
+        {%- if page.url == "/" %}
+        <li aria-current="page">Home</li>
+        {%- else %}
+        <li><a href="{{ '/' | relative_url }}">Home</a></li>
+        {%- if page.collection == "writeups" %}
+        <li><a href="{{ '/#writeups' | relative_url }}">Writeups</a></li>
+        {%- endif %}
+        <li aria-current="page">{{ page.title | default: "Page" }}</li>
+        {%- endif %}
+      </ol>
+    </nav>
+
+    <span class="topbar-title">{% if page.collection == "writeups" %}Writeup{% elsif page.url == "/" %}{{ site.title }}{% else %}{{ page.title }}{% endif %}</span>
+
+    <div class="search" id="search" role="search">
+      <label for="search-input" class="visually-hidden">Search all writeups</label>
+      <span class="search-icon">{% include icon.html name="search" %}</span>
+      <input id="search-input" type="search" placeholder="Search writeups…" autocomplete="off" spellcheck="false"
+             data-index="{{ '/search.json' | relative_url }}" aria-controls="search-results" aria-expanded="false">
+      <kbd class="search-kbd" aria-hidden="true">/</kbd>
+      <button type="button" id="search-cancel" class="search-cancel">Cancel</button>
+      <div id="search-results" class="search-results" hidden>
+        <p class="search-status" id="search-status" role="status" aria-live="polite"></p>
+        <ul id="search-list" role="list"></ul>
+      </div>
+    </div>
+
+    <button type="button" id="search-trigger" class="icon-btn topbar-search-btn" aria-label="Open search">
+      {% include icon.html name="search" %}
+    </button>
+  </div>
+</header>

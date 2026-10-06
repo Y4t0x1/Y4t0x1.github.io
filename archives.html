@@ -1,0 +1,22 @@
+---
+title: Archives
+permalink: /archives/
+description: Every writeup, by year.
+---
+{%- assign by_year = site.writeups | sort: "date" | reverse | group_by_exp: "w", "w.date | date: '%Y'" -%}
+<div class="timeline">
+  {%- for y in by_year %}
+  <section class="timeline-year" aria-labelledby="year-{{ y.name }}">
+    <h2 id="year-{{ y.name }}" class="timeline-label">{{ y.name }}</h2>
+    <ol class="timeline-list" role="list">
+      {%- for w in y.items %}
+      <li>
+        <time datetime="{{ w.date | date_to_xmlschema }}">{{ w.date | date: "%b %d" }}</time>
+        <a href="{{ w.url | relative_url }}">{{ w.title }}</a>
+        <span class="timeline-cat">{{ w.category }}</span>
+      </li>
+      {%- endfor %}
+    </ol>
+  </section>
+  {%- endfor %}
+</div>

@@ -1,0 +1,51 @@
+{%- comment -%}
+  Social links. style="icons" (sidebar) or style="cards" (about page).
+  Email is split into user/domain and assembled by JS to deter scrapers.
+{%- endcomment -%}
+{%- assign s = site.social -%}
+{%- if include.style == "cards" -%}
+<ul class="contact-grid" role="list">
+  {%- if s.github and s.github != "" %}
+  <li><a class="contact-card" href="{{ s.github }}" target="_blank" rel="noopener noreferrer me">
+    <span class="contact-icon">{% include icon.html name="github" %}</span>
+    <span><strong>GitHub</strong><small>{{ s.github | split: "/" | last }}</small></span>
+  </a></li>
+  {%- endif %}
+  {%- if s.linkedin and s.linkedin != "" %}
+  <li><a class="contact-card" href="{{ s.linkedin }}" target="_blank" rel="noopener noreferrer me">
+    <span class="contact-icon">{% include icon.html name="linkedin" %}</span>
+    <span><strong>LinkedIn</strong><small>Connect professionally</small></span>
+  </a></li>
+  {%- endif %}
+  {%- if s.email and s.email != "" %}
+  {%- assign em = s.email | split: "@" %}
+  <li><a class="contact-card" href="#" data-email-user="{{ em[0] }}" data-email-domain="{{ em[1] }}">
+    <span class="contact-icon">{% include icon.html name="mail" %}</span>
+    <span><strong>Email</strong><small>{{ em[0] }} [at] {{ em[1] }}</small></span>
+  </a></li>
+  {%- endif %}
+  {%- if s.discord and s.discord != "" %}
+  <li><a class="contact-card" href="{{ s.discord }}" target="_blank" rel="noopener noreferrer">
+    <span class="contact-icon">{% include icon.html name="discord" %}</span>
+    <span><strong>Discord</strong><small>@{{ s.discord_handle | default: "message me" }}</small></span>
+  </a></li>
+  {%- endif %}
+</ul>
+{%- else -%}
+<ul class="social-icons" role="list">
+  {%- if s.github and s.github != "" %}
+  <li><a href="{{ s.github }}" target="_blank" rel="noopener noreferrer me" aria-label="GitHub" title="GitHub">{% include icon.html name="github" %}</a></li>
+  {%- endif %}
+  {%- if s.linkedin and s.linkedin != "" %}
+  <li><a href="{{ s.linkedin }}" target="_blank" rel="noopener noreferrer me" aria-label="LinkedIn" title="LinkedIn">{% include icon.html name="linkedin" %}</a></li>
+  {%- endif %}
+  {%- if s.discord and s.discord != "" %}
+  <li><a href="{{ s.discord }}" target="_blank" rel="noopener noreferrer" aria-label="Discord" title="Discord">{% include icon.html name="discord" %}</a></li>
+  {%- endif %}
+  {%- if s.email and s.email != "" %}
+  {%- assign em = s.email | split: "@" %}
+  <li><a href="#" data-email-user="{{ em[0] }}" data-email-domain="{{ em[1] }}" aria-label="Email" title="Email">{% include icon.html name="mail" %}</a></li>
+  {%- endif %}
+  <li><a href="{{ '/feed.xml' | relative_url }}" aria-label="RSS feed" title="RSS feed">{% include icon.html name="rss" %}</a></li>
+</ul>
+{%- endif -%}

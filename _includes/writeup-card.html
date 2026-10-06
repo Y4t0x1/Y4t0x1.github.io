@@ -1,0 +1,35 @@
+{%- assign w = include.writeup -%}
+{%- capture tag_slugs -%}{% for t in w.tags %}{{ t | slugify }}{% unless forloop.last %} {% endunless %}{% endfor %}{%- endcapture -%}
+<article class="card"
+  data-date="{{ w.date | date: '%Y-%m-%d' }}"
+  data-category="{{ w.category | slugify }}"
+  data-difficulty="{{ w.difficulty | slugify }}"
+  data-tags="{{ tag_slugs }}"
+  data-search="{{ w.title | append: ' ' | append: w.summary | append: ' ' | append: w.platform | append: ' ' | append: w.category | append: ' ' | append: tag_slugs | downcase | escape }}">
+  {%- if w.image %}
+  <div class="card-cover">
+    <img src="{{ w.image | relative_url }}" alt="" loading="lazy" decoding="async">
+  </div>
+  {%- endif %}
+  <div class="card-body">
+    <div class="card-top">
+      <span class="card-category">{% include icon.html name="folder" %}{{ w.category }}</span>
+      {% include difficulty.html level=w.difficulty %}
+    </div>
+    <h3 class="card-title"><a href="{{ w.url | relative_url }}" class="card-link">{{ w.title }}</a></h3>
+    <p class="card-meta">
+      <time datetime="{{ w.date | date_to_xmlschema }}">{% include icon.html name="calendar" %}{{ w.date | date: "%b %-d, %Y" }}</time>
+      {%- if w.platform %}
+      <span>{% include icon.html name="flag" %}{{ w.platform }}</span>
+      {%- endif %}
+    </p>
+    <p class="card-summary">{{ w.summary }}</p>
+    {%- if w.tags.size > 0 %}
+    <ul class="card-tags" role="list" aria-label="Tags">
+      {%- for t in w.tags %}
+      <li><a class="chip chip-sm" href="{{ '/' | relative_url }}?tag={{ t | slugify }}#writeups" data-tag="{{ t | slugify }}">#{{ t }}</a></li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+  </div>
+</article>

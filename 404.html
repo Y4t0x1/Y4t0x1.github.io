@@ -1,0 +1,23 @@
+---
+layout: default
+title: Page not found
+permalink: /404.html
+sitemap: false
+---
+<main id="main-content" class="not-found" tabindex="-1">
+  <div class="terminal terminal-404">
+    <div class="terminal-bar">
+      <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+      <span class="terminal-title">bash</span>
+    </div>
+    <div class="terminal-body">
+      <p><span class="prompt">$</span> cat ./this-page</p>
+      <p class="out t-err">cat: ./this-page: No such file or directory</p>
+      <p><span class="prompt">$</span> echo $?</p>
+      <p class="out">404</p>
+    </div>
+  </div>
+  <h1 class="page-title">404: flag not found</h1>
+  <p class="page-lead">This page doesn't exist, or it was moved. Try searching, or head back to the writeups.</p>
+  <a class="btn btn-primary" href="{{ '/' | relative_url }}">{% include icon.html name="arrow-left" %} Back to all writeups</a>
+</main>

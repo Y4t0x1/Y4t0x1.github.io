@@ -1,0 +1,127 @@
+/* =============================================================
+   Design tokens — tweak colors here to rebrand the whole site.
+   Dark is the default; [data-theme="light"] overrides.
+   ============================================================= */
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #0a0f16;
+  --bg-elev: #0d141e;
+  --surface: #111a26;
+  --surface-2: #172231;
+  --surface-3: #1d2a3c;
+  --border: #1d2939;
+  --border-strong: #2a3a50;
+
+  --text: #d3deea;
+  --text-strong: #f2f7fc;
+  --muted: #8d9db2;
+
+  --accent: #2dd4bf;          /* teal */
+  --accent-2: #38bdf8;        /* sky  */
+  --accent-strong: #5eead4;
+  --accent-contrast: #04201d;
+  --accent-soft: rgba(45, 212, 191, 0.12);
+  --accent-ring: rgba(45, 212, 191, 0.35);
+  --gradient: linear-gradient(120deg, #2dd4bf 0%, #38bdf8 100%);
+
+  --link: #5eead4;
+  --link-hover: #99f6e4;
+
+  --code-bg: #0b121b;
+  --code-header: #0f1823;
+  --inline-code-bg: rgba(56, 189, 248, 0.1);
+  --inline-code: #7dd3fc;
+
+  --mark-bg: rgba(45, 212, 191, 0.28);
+  --overlay: rgba(3, 7, 12, 0.7);
+  --topbar-bg: rgba(10, 15, 22, 0.78);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow: 0 12px 32px -14px rgba(0, 0, 0, 0.7);
+  --shadow-glow: 0 0 0 1px rgba(45, 212, 191, 0.25), 0 18px 40px -18px rgba(45, 212, 191, 0.35);
+
+  --easy: #4ade80;    --easy-bg: rgba(74, 222, 128, 0.12);
+  --medium: #fbbf24;  --medium-bg: rgba(251, 191, 36, 0.12);
+  --hard: #fb7185;    --hard-bg: rgba(251, 113, 133, 0.12);
+  --insane: #c084fc;  --insane-bg: rgba(192, 132, 252, 0.13);
+
+  --info: #38bdf8;    --info-bg: rgba(56, 189, 248, 0.08);
+  --tip: #2dd4bf;     --tip-bg: rgba(45, 212, 191, 0.08);
+  --warning: #fbbf24; --warning-bg: rgba(251, 191, 36, 0.08);
+  --danger: #fb7185;  --danger-bg: rgba(251, 113, 133, 0.08);
+
+  --grid-line: rgba(148, 197, 233, 0.06);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #f4f7fa;
+  --bg-elev: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #eef3f8;
+  --surface-3: #e3eaf2;
+  --border: #dfe6ee;
+  --border-strong: #c9d4e0;
+
+  --text: #2a3646;
+  --text-strong: #0d1726;
+  --muted: #576579;
+
+  --accent: #0f766e;
+  --accent-2: #0369a1;
+  --accent-strong: #0d9488;
+  --accent-contrast: #ffffff;
+  --accent-soft: rgba(15, 118, 110, 0.09);
+  --accent-ring: rgba(15, 118, 110, 0.35);
+  --gradient: linear-gradient(120deg, #0d9488 0%, #0284c7 100%);
+
+  --link: #0f766e;
+  --link-hover: #115e59;
+
+  --code-bg: #f7f9fc;
+  --code-header: #eef2f7;
+  --inline-code-bg: rgba(3, 105, 161, 0.08);
+  --inline-code: #075985;
+
+  --mark-bg: rgba(13, 148, 136, 0.2);
+  --overlay: rgba(15, 23, 42, 0.45);
+  --topbar-bg: rgba(244, 247, 250, 0.82);
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow: 0 14px 30px -16px rgba(15, 23, 42, 0.22);
+  --shadow-glow: 0 0 0 1px rgba(15, 118, 110, 0.25), 0 18px 36px -20px rgba(15, 118, 110, 0.35);
+
+  --easy: #15803d;    --easy-bg: rgba(21, 128, 61, 0.1);
+  --medium: #b45309;  --medium-bg: rgba(180, 83, 9, 0.1);
+  --hard: #be123c;    --hard-bg: rgba(190, 18, 60, 0.09);
+  --insane: #7e22ce;  --insane-bg: rgba(126, 34, 206, 0.09);
+
+  --info: #0369a1;    --info-bg: rgba(3, 105, 161, 0.06);
+  --tip: #0f766e;     --tip-bg: rgba(15, 118, 110, 0.06);
+  --warning: #b45309; --warning-bg: rgba(180, 83, 9, 0.07);
+  --danger: #be123c;  --danger-bg: rgba(190, 18, 60, 0.06);
+
+  --grid-line: rgba(15, 60, 100, 0.06);
+}
+
+:root {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --sidebar-w: 264px;
+  --topbar-h: 64px;
+  --panel-w: 272px;
+  --content-max: 1240px;
+
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 18px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 150ms var(--ease);
+  --t: 260ms var(--ease);
+}
