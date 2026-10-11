@@ -31,7 +31,7 @@ const TICKS = Array.from({ length: 48 }, (_, i) => {
   const innerR = major ? 46.4 : 48;
   return {
     x1: Number((50 + 50 * Math.cos(rad)).toFixed(2)),
-    y1: Number((50 + 50 * Math.sin(rad)).toFixed(2),),
+    y1: Number((50 + 50 * Math.sin(rad)).toFixed(2)),
     x2: Number((50 + innerR * Math.cos(rad)).toFixed(2)),
     y2: Number((50 + innerR * Math.sin(rad)).toFixed(2)),
     major,

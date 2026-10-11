@@ -79,28 +79,15 @@ export function Reveal({
       obs.observe(el);
     }
 
-    // Passive scroll listener fallback for guaranteed reliability
-    const onScroll = () => {
-      const currentRect = el.getBoundingClientRect();
-      if (currentRect.top < window.innerHeight + 200 && currentRect.bottom > 0) {
-        revealElement();
-        revealCallbacks.delete(el);
-        obs?.unobserve(el);
-        window.removeEventListener("scroll", onScroll);
-      }
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-
     // Safety timeout: ensure no element is ever stuck in a hidden state
     const timer = setTimeout(() => {
       revealElement();
-    }, 2000);
+    }, 2500);
 
     return () => {
       clearTimeout(timer);
       revealCallbacks.delete(el);
       obs?.unobserve(el);
-      window.removeEventListener("scroll", onScroll);
     };
   }, [once]);
 
