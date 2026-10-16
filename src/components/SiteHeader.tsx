@@ -37,6 +37,7 @@ export function SiteHeader() {
 
   useEffect(() => {
     const sections = navLinks
+      .filter((link) => link.href.startsWith("#"))
       .map((link) => document.querySelector(link.href) as HTMLElement | null)
       .filter((el): el is HTMLElement => el !== null);
 
@@ -82,7 +83,14 @@ export function SiteHeader() {
                   aria-current={active === link.href ? "true" : undefined}
                   className={linkClass(link.href)}
                 >
-                  {link.label}
+                  <span className="inline-flex items-center gap-1">
+                    {link.label}
+                    {link.external && (
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-signal-400/80" aria-hidden="true">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3" />
+                      </svg>
+                    )}
+                  </span>
                 </a>
               </li>
             ))}
@@ -123,11 +131,19 @@ export function SiteHeader() {
                 href={link.href}
                 aria-current={active === link.href ? "true" : undefined}
                 onClick={() => setOpen(false)}
-                className={`nav-link focus-ring block rounded-md px-3 py-2.5 text-sm hover:bg-white/5 ${
+                className={`nav-link focus-ring flex items-center justify-between rounded-md px-3 py-2.5 text-sm hover:bg-white/5 ${
                   active === link.href ? "text-zinc-50" : "text-zinc-300 hover:text-zinc-100"
                 }`}
               >
-                {link.label}
+                <span>{link.label}</span>
+                {link.external && (
+                  <span className="flex items-center gap-1 font-mono text-xs text-signal-400">
+                    Blog
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                )}
               </a>
             </li>
           ))}

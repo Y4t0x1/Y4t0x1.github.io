@@ -122,6 +122,36 @@ export function Work() {
           </Reveal>
         ))}
       </div>
+
+      <Reveal delay={projects.length * 80}>
+        <div className="mt-8 rounded-xl border border-signal-500/20 bg-gradient-to-r from-signal-950/40 via-ink-900/60 to-ink-950 p-6 sm:p-8">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="inline-block h-2 w-2 rounded-full bg-signal-400 animate-pulse" />
+                <span className="font-mono text-xs uppercase tracking-label text-signal-400">
+                  CTF Writeups & Security Research
+                </span>
+              </div>
+              <h4 className="text-base font-semibold text-zinc-100 sm:text-lg">
+                Hands-on Walkthroughs & Penetration Testing Notes
+              </h4>
+              <p className="max-w-2xl text-sm text-zinc-400">
+                Detailed breakdowns covering Web Exploitation, Cryptography, Reverse Engineering, and Threat Hunting on Hack The Box, PicoCTF, and active labs.
+              </p>
+            </div>
+            <a
+              href="https://y4t0x1.github.io/blog"
+              className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-signal-500/40 bg-signal-500/10 px-4 py-2.5 text-sm font-medium text-signal-300 transition-colors hover:border-signal-400 hover:bg-signal-500/20 focus-ring"
+            >
+              <span>Explore Writeups</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </Reveal>
     </Section>
   );
 }

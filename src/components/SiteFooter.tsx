@@ -8,7 +8,11 @@ export function SiteFooter() {
           <span className="text-zinc-300">{identity.name}</span> · {identity.title} · {identity.location}
         </p>
         <p className="font-mono text-xs">
-          Built with Next.js, TypeScript &amp; Tailwind CSS · {new Date().getFullYear()}
+          Built with Next.js &amp; Tailwind CSS ·{" "}
+          <a href="https://y4t0x1.github.io/blog" className="text-zinc-400 transition-colors hover:text-signal-400">
+            Writeups &amp; Blog
+          </a>{" "}
+          · {new Date().getFullYear()}
         </p>
       </div>
     </footer>
