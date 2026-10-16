@@ -28,6 +28,7 @@ jobs:
           cache: "npm"
 
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v5
 
       - name: Install dependencies
@@ -37,7 +38,11 @@ jobs:
         run: npm run build
         env:
           GITHUB_PAGES: "true"
-          NEXT_PUBLIC_SITE_URL: "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url }}
+
+      - name: Disable Jekyll
+        run: touch ./out/.nojekyll
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
