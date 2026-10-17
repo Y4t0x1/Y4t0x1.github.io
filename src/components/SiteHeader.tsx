@@ -68,7 +68,7 @@ export function SiteHeader() {
           className="focus-ring flex min-w-0 items-center gap-2 rounded-md text-sm font-semibold text-zinc-100"
         >
           <span aria-hidden="true" className="font-mono text-signal-500 shrink-0">
-            hh
+            Y4
           </span>
           <span className="hidden sm:inline">{identity.name}</span>
           <span className="sm:hidden truncate max-w-[190px] min-[400px]:max-w-none">{identity.title}</span>
