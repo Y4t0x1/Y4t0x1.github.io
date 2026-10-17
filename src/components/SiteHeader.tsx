@@ -83,14 +83,7 @@ export function SiteHeader() {
                   aria-current={active === link.href ? "true" : undefined}
                   className={linkClass(link.href)}
                 >
-                  <span className="inline-flex items-center gap-1">
-                    {link.label}
-                    {link.external && (
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-signal-400/80" aria-hidden="true">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3" />
-                      </svg>
-                    )}
-                  </span>
+                  {link.label}
                 </a>
               </li>
             ))}
@@ -99,10 +92,13 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <a
-            href="#contact"
-            className="hidden rounded-lg border border-white/15 px-4 py-2 text-sm font-medium text-zinc-100 transition-colors hover:border-white/30 hover:bg-white/5 focus-ring sm:inline-flex"
+            href="https://y4t0x1.github.io/blog"
+            className="hidden rounded-lg border border-white/15 px-4 py-2 text-sm font-medium text-zinc-100 transition-colors hover:border-signal-500/40 hover:bg-white/5 focus-ring sm:inline-flex items-center gap-1.5"
           >
-            Contact
+            <span>Writeups</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-signal-400" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3" />
+            </svg>
           </a>
           <button
             type="button"
@@ -131,22 +127,26 @@ export function SiteHeader() {
                 href={link.href}
                 aria-current={active === link.href ? "true" : undefined}
                 onClick={() => setOpen(false)}
-                className={`nav-link focus-ring flex items-center justify-between rounded-md px-3 py-2.5 text-sm hover:bg-white/5 ${
+                className={`nav-link focus-ring block rounded-md px-3 py-2.5 text-sm hover:bg-white/5 ${
                   active === link.href ? "text-zinc-50" : "text-zinc-300 hover:text-zinc-100"
                 }`}
               >
-                <span>{link.label}</span>
-                {link.external && (
-                  <span className="flex items-center gap-1 font-mono text-xs text-signal-400">
-                    Blog
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </span>
-                )}
+                {link.label}
               </a>
             </li>
           ))}
+          <li className="pt-2 border-t border-white/10 mt-1">
+            <a
+              href="https://y4t0x1.github.io/blog"
+              onClick={() => setOpen(false)}
+              className="flex items-center justify-between rounded-lg border border-signal-500/30 bg-signal-500/10 px-3 py-2.5 text-sm font-medium text-signal-300 hover:bg-signal-500/20"
+            >
+              <span>Writeups &amp; Research</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3" />
+              </svg>
+            </a>
+          </li>
         </ul>
       </nav>
 

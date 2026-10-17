@@ -485,7 +485,6 @@ export const navLinks: { href: string; label: string; external?: boolean }[] = [
   { href: "#experience", label: "Experience" },
   { href: "#certifications", label: "Credentials" },
   { href: "#work", label: "Work" },
-  { href: "https://y4t0x1.github.io/blog", label: "Writeups", external: true },
   { href: "#methodology", label: "Methodology" },
   { href: "#contact", label: "Contact" },
 ];
