@@ -47,7 +47,7 @@ export function Contact() {
               <dd>
                 <a
                   href={`mailto:${identity.email}`}
-                  className="focus-ring rounded-md text-zinc-200 hover:text-signal-400"
+                  className="focus-ring rounded-md text-zinc-200 hover:text-signal-400 break-all"
                 >
                   {identity.email}
                 </a>
@@ -62,7 +62,7 @@ export function Contact() {
                   href={identity.linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="focus-ring rounded-md text-zinc-200 hover:text-signal-400"
+                  className="focus-ring rounded-md text-zinc-200 hover:text-signal-400 break-all"
                 >
                   {identity.linkedinLabel}
                   <span className="sr-only">(opens in a new tab)</span>

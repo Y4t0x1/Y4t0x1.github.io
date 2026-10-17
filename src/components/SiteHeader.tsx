@@ -61,17 +61,17 @@ export function SiteHeader() {
     }`;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-ink-950/85 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-ink-950/85 backdrop-blur-md pt-[env(safe-area-inset-top,0px)]">
       <div className="shell flex h-16 items-center justify-between gap-4">
         <a
           href="#top"
-          className="focus-ring flex items-center gap-2 rounded-md text-sm font-semibold text-zinc-100"
+          className="focus-ring flex min-w-0 items-center gap-2 rounded-md text-sm font-semibold text-zinc-100"
         >
-          <span aria-hidden="true" className="font-mono text-signal-500">
+          <span aria-hidden="true" className="font-mono text-signal-500 shrink-0">
             hh
           </span>
           <span className="hidden sm:inline">{identity.name}</span>
-          <span className="sm:hidden">{identity.title}</span>
+          <span className="sm:hidden truncate max-w-[190px] min-[400px]:max-w-none">{identity.title}</span>
         </a>
 
         <nav aria-label="Primary" className="hidden lg:block">
@@ -90,7 +90,7 @@ export function SiteHeader() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 shrink-0">
           <a
             href="https://y4t0x1.github.io/blog"
             className="hidden rounded-lg border border-white/15 px-4 py-2 text-sm font-medium text-zinc-100 transition-colors hover:border-signal-500/40 hover:bg-white/5 focus-ring sm:inline-flex items-center gap-1.5"
@@ -118,7 +118,7 @@ export function SiteHeader() {
       <nav
         id="mobile-nav"
         aria-label="Primary mobile"
-        className={`border-t border-white/10 lg:hidden ${open ? "block" : "hidden"}`}
+        className={`border-t border-white/10 lg:hidden max-h-[calc(100dvh-4rem)] overflow-y-auto ${open ? "block" : "hidden"}`}
       >
         <ul className="shell grid gap-1 py-3">
           {navLinks.map((link) => (

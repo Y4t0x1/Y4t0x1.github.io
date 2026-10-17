@@ -26,7 +26,7 @@ export function Hero() {
 
             <h1
               id="hero-title"
-              className="mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-zinc-50 sm:text-5xl lg:text-6xl"
+              className="mt-5 max-w-3xl text-3xl font-semibold tracking-tight text-zinc-50 sm:text-5xl lg:text-6xl"
             >
               {nameWords.map((word, i) => (
                 <span
@@ -119,7 +119,7 @@ export function Hero() {
 
           {/* ===================================================== visual: sensor dial */}
           <div
-            className="hero-anim group relative mx-auto w-full max-w-[24rem] sm:max-w-[28rem] lg:max-w-none lg:translate-x-[70px]"
+            className="hero-anim group relative mx-auto w-full max-w-[24rem] sm:max-w-[28rem] lg:max-w-none xl:translate-x-[30px] 2xl:translate-x-[60px]"
             style={{ animationDelay: "0.35s" }}
             aria-hidden="true"
           >

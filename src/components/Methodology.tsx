@@ -15,9 +15,9 @@ export function Methodology() {
         <div className="relative">
           <span
             aria-hidden="true"
-            className="method-line absolute left-0 right-0 top-0 hidden h-px bg-gradient-to-r from-signal-500 via-signal-600/50 to-transparent xl:block"
+            className="method-line absolute left-0 right-0 top-0 hidden h-px bg-gradient-to-r from-signal-500 via-signal-600/50 to-transparent 2xl:block"
           />
-          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
+          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-7">
             {methodology.map((item, i) => (
               <Reveal as="li" key={item.step} delay={i * 90} className="card relative p-5">
                 <span className="font-mono text-xs text-signal-500">{item.step}</span>
@@ -25,7 +25,7 @@ export function Methodology() {
                 <p className="mt-2 text-xs leading-relaxed text-zinc-500">{item.description}</p>
                 <span
                   aria-hidden="true"
-                  className="absolute right-4 top-5 font-mono text-xs text-zinc-700 max-xl:hidden xl:block"
+                  className="absolute right-4 top-5 font-mono text-xs text-zinc-700 hidden 2xl:block"
                 >
                   {item.step !== "07" ? "→" : ""}
                 </span>

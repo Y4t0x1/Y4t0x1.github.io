@@ -85,7 +85,7 @@ export function Credentials() {
                 <p className="mt-1 text-sm text-zinc-400">{education.institution}</p>
                 <p className="mt-1 text-xs text-zinc-500">{education.location}</p>
               </div>
-              <div className="text-right">
+              <div className="text-left sm:text-right">
                 <p className="font-mono text-sm text-signal-400">{education.period}</p>
                 <p className="mt-1 text-xs text-zinc-500">GPA: {education.gpa}</p>
               </div>
